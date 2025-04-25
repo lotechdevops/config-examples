@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-app-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: app.devopsr66.com # Substitua pelo seu domínio
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-app
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - app.devopsr66.com # Substitua pelo seu domínio
+    secretName: devopsr66-tls # Nome do Secret gerado pelo cert-manager

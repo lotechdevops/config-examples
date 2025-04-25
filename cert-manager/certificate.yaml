@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: devopsr66-cert
+  namespace: default
+spec:
+  secretName: devopsr66-tls
+  issuerRef:
+    name: letsencrypt-prod-route53
+    kind: ClusterIssuer
+  dnsNames:
+  - "*.devopsr66.com"
